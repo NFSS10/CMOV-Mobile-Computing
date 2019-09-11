@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:local="clr-namespace:CMOV"
+             x:Class="CMOV.MainPage">
+
+    <StackLayout>
+        <skia:SKCanvasView x:Name="canvasView"
+                           PaintSurface="CanvasViewPaintSurface" 
+                           HeightRequest="250">
+            <skia:SKCanvasView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCanvasViewTapped" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnCanvasViewRightSwiped"/>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnCanvasViewLeftSwiped"/>
+            </skia:SKCanvasView.GestureRecognizers>
+        </skia:SKCanvasView>
+
+        <ListView x:Name="companiesListView" ItemsSource="{Binding CompaniesListItems}"
+                  RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="0,0,0,10">
+                            <!-- ########## Grid Columns Style ########## -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="20*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+
+                            <!-- ########## Grid Elements ########## -->
+                            <!-- Image -->
+                            <Image Source="{Binding data.imgUrl}" Aspect="AspectFit"
+                                       HorizontalOptions="Center" VerticalOptions="Center"
+                                       Margin="5,0,5,0"
+                                       Grid.Column="0"/>
+                            <!-- Name and ticker -->
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1">
+                                <Label Text="{Binding data.name}" Font="Bold, 18"/>
+                                <Label Text="{Binding data.ticker}" FontSize="16"/>
+                            </StackLayout>
+                            <!-- Switch -->
+                            <Switch IsToggled="{Binding isSelected}" Toggled="Switch_Toggled"
+                                        VerticalOptions="Center" HorizontalOptions="End"
+                                        Grid.Column="2"
+                                        Margin="0,0,5,0"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>

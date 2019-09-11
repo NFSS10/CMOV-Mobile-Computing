@@ -1,0 +1,4 @@
+https://gitlab.com/CMOV/company-server
+https://gitlab.com/CMOV/cafeteria-order-terminal
+https://gitlab.com/CMOV/customer-app
+https://gitlab.com/CMOV/ticket-validation-terminal
