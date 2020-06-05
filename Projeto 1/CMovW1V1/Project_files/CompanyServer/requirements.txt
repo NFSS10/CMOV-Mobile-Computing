@@ -1,5 +1,5 @@
 Django==2.2.13
-djangorestframework==3.9.0
+djangorestframework==3.9.1
 pycryptodome==3.7.0
 pytz==2018.5
 virtualenv==16.0.0
